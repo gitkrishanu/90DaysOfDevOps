@@ -1,0 +1,117 @@
+# Linux Architecture Notes
+
+## What is Linux?
+Linux is an open-source operating system used in servers, cloud platforms, containers, and DevOps environments.
+
+---
+
+# Core Components of Linux
+
+## 1. Kernel
+The kernel is the core part of Linux that directly interacts with hardware.
+
+### Responsibilities:
+- CPU management
+- Memory management
+- Process scheduling
+- Device management
+- File system handling
+
+The kernel works as a bridge between hardware and applications.
+
+---
+
+## 2. User Space
+User space is where users and applications run.
+
+### Examples:
+- Bash shell
+- VS Code
+- Python programs
+- Nginx
+- Docker
+
+Applications cannot directly access hardware.
+They communicate with the kernel using system calls.
+
+---
+
+## 3. init / systemd
+After booting, Linux starts the first process called `init` (PID 1).
+
+Modern Linux distributions use `systemd`.
+
+### systemd Responsibilities:
+- Starts system services
+- Manages background processes
+- Handles service restart
+- Collects logs
+- Controls boot sequence
+
+### Useful systemd Commands
+```bash
+systemctl status nginx
+systemctl start nginx
+systemctl stop nginx
+systemctl restart nginx
+journalctl -u nginx
+
+Linux Process Management
+What is a Process?
+
+A process is a running instance of a program.
+
+Examples:
+
+Chrome browser
+Bash terminal
+Python script
+
+Each process has:
+
+PID (Process ID)
+Parent Process
+Memory allocation
+Process state
+
+Process Creation
+
+Linux mainly uses:
+
+fork() → create child process
+exec() → load new program into process
+
+Example:
+When running ls command:
+
+Shell creates child process
+Child executes ls
+
+Process States
+State	Meaning
+Running	Currently using CPU
+Sleeping	Waiting for resource/input
+Stopped	Paused process
+Zombie	Process finished but not cleaned
+Orphan	Parent process terminated
+
+Zombie processes waste process table entries and should be cleaned properly.
+
+Why systemd Matters in DevOps
+
+Understanding systemd helps to:
+
+Troubleshoot failed services
+Restart applications safely
+Analyze logs during incidents
+Manage production servers
+Automate service startup
+
+Most production Linux servers use systemd for service management.
+
+Key Learning Summary
+Kernel manages hardware and system resources
+User space runs applications
+systemd manages services and boot process
+Processes have different states and lifecycle
+Linux troubleshooting starts with understanding processes and logs
